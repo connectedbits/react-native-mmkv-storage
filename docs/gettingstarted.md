@@ -26,7 +26,7 @@ Plug MMKV in `MainApplication.java`
 
 ```java
 import com.ammarahmed.mmkv.RNMMKVJSIModulePackage; // <- add here
-
+import com.facebook.react.bridge.JSIModulePackage; // <- add here
 public class MainApplication extends Application implements ReactApplication {
 
   private final ReactNativeHost mReactNativeHost =
@@ -67,7 +67,7 @@ If you are using `react-native-reanimated` library, follow the steps below inste
 2. Open the file in VSCode and make the following changes:
 
 ```java
-package com.ammarahmed.mmkv;
+package com.ammarahmed.mmkv; // <-- CHANGE TO YOUR PACKAGE NAME
 
 import com.facebook.react.bridge.JSIModulePackage;
 import com.facebook.react.bridge.JSIModuleSpec;
@@ -79,10 +79,12 @@ import java.util.List;
 import com.swmansion.reanimated.ReanimatedJSIModulePackage; // <-- ADD THIS
 import com.ammarahmed.mmkv.RNMMKVModule; // <-- ADD THIS
 
-public class RNMMKVJSIModulePackage implements ReanimatedJSIModulePackage  { // <--- REPLACE JSIModulePackage with ReanimatedJSIModulePackage
+
+public class RNMMKVJSIModulePackage implements ReanimatedJSIModulePackage  { // <--- REPLACE RNMMKVJSIModulePackage implements JSIModulePackage with CustomMMKVJSIModulePackage extends ReanimatedJSIModulePackage
     @Override
     public List<JSIModuleSpec> getJSIModules(ReactApplicationContext reactApplicationContext, JavaScriptContextHolder jsContext) {
-
+	    super.getJSIModules(reactApplicationContext, jsContext); // <-- ADD THIS
+	
         reactApplicationContext.getNativeModule(RNMMKVModule.class).installLib(jsContext, reactApplicationContext.getFilesDir().getAbsolutePath() + "/mmkv");
 
         return Collections.emptyList();
@@ -94,7 +96,7 @@ then import this file instead in `MainApplication.java` as mentioned above and m
 
 ```java
 import com.your.project.name.CustomMMKVJSIModulePackage; // <- add here
-
+import com.facebook.react.bridge.JSIModulePackage; // <-- ADD THIS
 public class MainApplication extends Application implements ReactApplication {
 
   private final ReactNativeHost mReactNativeHost =

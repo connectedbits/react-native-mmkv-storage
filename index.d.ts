@@ -1,6 +1,11 @@
 declare function MMKVStorage(): any;
 
-export declare function useMMKVStorage(key:string,storage:MMKVStorage.API):[value:string,setValue:(value:any)=>void];
+export declare function useMMKVStorage<T = any>(
+  key: string,
+  storage: MMKVStorage.API
+): [T, (value?: T | ((prevValue: T) => T)) => void];
+
+export declare function create(storage:MMKVStorage.API):<T = any>(key:string) => [T, (value?: T | ((prevValue: T) => T)) => void];
 
 export default MMKVStorage;
 
@@ -130,13 +135,13 @@ declare module MMKVStorage {
       keys: Array<string>
     ): Promise<Array<T>>;
 
-    clearStore(): Promise<boolean | undefined>;
+    clearStore(): boolean | undefined;
     /**
      * Remove an item from storage for a given key.
      *
      * @param {String} key
      */
-    removeItem(key: string): Promise<boolean | undefined>;
+    removeItem(key: string): boolean | undefined;
 
     // NON ASYNC CALLS
 

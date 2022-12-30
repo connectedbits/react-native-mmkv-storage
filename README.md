@@ -6,6 +6,8 @@
 [![](https://img.shields.io/npm/v/react-native-mmkv-storage.svg?style=flat-square)](https://www.npmjs.com/package/react-native-mmkv-storage)
 [![License: MIT](https://img.shields.io/badge/License-MIT-green.svg?style=flat-square)](https://www.npmjs.com/package/react-native-mmkv-storage/blob/master/LICENSE)
 [![](https://img.shields.io/npm/dt/react-native-mmkv-storage?style=flat-square)](https://www.npmjs.com/package/react-native-mmkv-storage)
+[![Android](https://github.com/ammarahm-ed/react-native-mmkv-storage/actions/workflows/main.yml/badge.svg)](https://github.com/ammarahm-ed/react-native-mmkv-storage/actions/workflows/main.yml)
+[![iOS](https://github.com/ammarahm-ed/react-native-mmkv-storage/actions/workflows/ios.yml/badge.svg)](https://github.com/ammarahm-ed/react-native-mmkv-storage/actions/workflows/ios.yml)
 
 
 > An efficient, small & encrypted mobile key-value storage framework for React Native written in C++ using JSI
@@ -24,6 +26,8 @@ This library aims to provide a fast & reliable solution for you data storage nee
 - **Fast and Efficient (0.0002s Read/Write Speed)**<br/>
   MMKV uses mmap to keep memory synced with file, and protobuf to encode/decode values to achieve best performance.
   You can see the benchmarks here: [Android](https://github.com/Tencent/MMKV/wiki/android_benchmark) & [iOS](https://github.com/Tencent/MMKV/wiki/iOS_benchmark)
+- **Reactive using useMMKVStorage Hook**<br/>
+  Starting from `v0.5.5`, thanks to the power of JSI, we now have our very own `useMMKVStorage` Hook. Think of it like a persisted state that will always write every change in storage and update your app UI instantly. It doesn't matter if you reload the app or restart it.
 - **Multi-Process Support**<br/>
   MMKV supports concurrent read-read and read-write access between processes.
 - **Create unlimited Database instances**<br/>
